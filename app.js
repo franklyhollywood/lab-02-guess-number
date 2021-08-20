@@ -6,6 +6,7 @@ const guessButton = document.getElementById('submitGuess');
 const guessEl = document.getElementById('highLow');
 const numTries = document.getElementById('numberOfTries');
 const resultsEl = document.getElementById('results');
+const resetButton = document.getElementById('resetbutton');
 
 let secretNumber = Math.ceil(Math.random() * 20);
 
@@ -16,42 +17,48 @@ let counter1 = 0;
 
 //set event listeners
 guessButton.addEventListener('click', () => {
-	counter1++;
+    counter1++;
+    let userNumber = Number(userGuess.value);
 
-	let userNumber = Number(userGuess.value);
+    if (counter1 === 1 && userNumber !== secretNumber) {
+        numTries.textContent = `you have 3 more tries`;
+    } else if (counter1 === 2 && userNumber !== secretNumber) {
+        numTries.textContent = `you have 2 more tries`;
+    } else if (counter1 === 3 && userNumber !== secretNumber) {
+        numTries.textContent = `you have 1 more try`;
+    } else if (userGuess === secretNumber) {
+        counter1 = 0;
+        guessButton.disabled = true;
+        guessEl.textContent = 'YOU WIN!';
+    } else {
+        numTries.textContent = ' ';
+    }
 
-	if (counter1 === 4) {
-		//display your out of guesses!  The answer was...
-		numTries.textContent = `You are out of guessses.  the number was ${secretNumber}`;
-	}
+    console.log(counter1);
 
-	if (counter1 === 1) {
-		numTries.textContent = `you have 3 more tries`;
-	} else if (counter1 === 2) {
-		numTries.textContent = `you have 2 more tries`;
-	} else if (counter1 === 3) {
-		numTries.textContent = `you have 1 more try`;
-	} else if (userGuess === secretNumber) {
-		counter1 = 0;
-		guessButton.disabled = true;
-		guessEl.textContent = 'YOU WIN!';
-	} else {
-		numTries.textContent = ' ';
-	}
-
-	console.log(counter1);
-
-	if (compareNumbers(userNumber, secretNumber) === -1) {
-		guessEl.textContent = 'Youre number is too low';
-	} else if (compareNumbers(userNumber, secretNumber) === 1) {
-		guessEl.textContent = 'Youre number is too high!';
-	} else if (compareNumbers(userNumber, secretNumber) === 0) {
-		guessEl.textContent = 'You Guessed the secret number!';
-	}
-	if (counter1 === 4) {
-		guessButton.disabled = true;
-	}
+    if (compareNumbers(userNumber, secretNumber) === -1) {
+        guessEl.textContent = 'Youre number is too low';
+    } else if (compareNumbers(userNumber, secretNumber) === 1) {
+        guessEl.textContent = 'Youre number is too high!';
+    } else if (compareNumbers(userNumber, secretNumber) === 0) {
+        guessEl.textContent = 'You Guessed the secret number!';
+    }
+    if (counter1 === 4) {
+        numTries.textContent = `You are out of guessses.  the number was ${secretNumber}`;
+        guessButton.disabled = true;
+        resetButton.style.visibility = 'visible';
+    }
+    if (userNumber === secretNumber) {
+        resetButton.style.visibility = 'visible';
+    }
 });
+
+resetButton.addEventListener('click', () => {
+    location.reload();
+});
+
+resetButton.style.visibility = 'hidden';
+
 //if user guess a number, counter goes up by 1
 
 //console.log(counter1);
