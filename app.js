@@ -6,17 +6,16 @@ const guessButton = document.getElementById('submitGuess');
 const guessEl = document.getElementById('highLow');
 const numTries = document.getElementById('numberOfTries');
 const resultsEl = document.getElementById('results');
-const resetButton = document.getElementById('resetbutton');
+const resetButton = document.getElementById('resetButton');
 
 let secretNumber = Math.ceil(Math.random() * 20);
 
 console.log(userGuess, guessButton, guessEl, numTries, resultsEl, secretNumber);
 
 let counter1 = 0;
-//let counter2 = 0;
-// initialize global state
 
-//set event listeners
+resetButton.style.visibility = 'hidden';
+
 guessButton.addEventListener('click', () => {
     counter1++;
     let userNumber = Number(userGuess.value);
@@ -44,13 +43,17 @@ guessButton.addEventListener('click', () => {
     } else if (compareNumbers(userNumber, secretNumber) === 0) {
         guessEl.textContent = 'You Guessed the secret number!';
     }
+
     if (counter1 === 4) {
         numTries.textContent = `You are out of guessses.  the number was ${secretNumber}`;
         guessButton.disabled = true;
         resetButton.style.visibility = 'visible';
+        guessEl.textContent = '';
     }
+
     if (userNumber === secretNumber) {
         resetButton.style.visibility = 'visible';
+        guessButton.disabled = true;
     }
 });
 
@@ -58,7 +61,7 @@ resetButton.addEventListener('click', () => {
     location.reload();
 });
 
-resetButton.style.visibility = 'hidden';
+
 
 //if user guess a number, counter goes up by 1
 
