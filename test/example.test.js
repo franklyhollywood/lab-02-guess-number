@@ -6,41 +6,41 @@ const test = QUnit.test;
 test('time to test a function', (expect) => {
 	//Arrange
 	// Set up your arguments and expectations
-	const expected = 0;
+    const expected = 0;
 
 	//Act
 	// Call the function you're testing and set the result to a const
-	const actual = compareNumbers(3, 3);
+    const actual = compareNumbers(3, 3);
 
 	//Expect
 	// Make assertions about what is expected versus the actual result
-	expect.equal(actual, expected);
+    expect.equal(actual, expected);
 });
 
 test('time to test a function', (expect) => {
 	//Arrange
 	// Set up your arguments and expectations
-	const expected = -1;
+    const expected = -1;
 
 	//Act
 	// Call the function you're testing and set the result to a const
-	const actual = compareNumbers(4, 17);
+    const actual = compareNumbers(4, 17);
 
 	//Expect
 	// Make assertions about what is expected versus the actual result
-	expect.equal(actual, expected);
+    expect.equal(actual, expected);
 });
 
 test('time to test a function', (expect) => {
 	//Arrange
 	// Set up your arguments and expectations
-	const expected = 1;
+    const expected = 1;
 
 	//Act
 	// Call the function you're testing and set the result to a const
-	const actual = compareNumbers(13, 12);
+    const actual = compareNumbers(13, 12);
 
 	//Expect
 	// Make assertions about what is expected versus the actual result
-	expect.equal(actual, expected);
+    expect.equal(actual, expected);
 });
