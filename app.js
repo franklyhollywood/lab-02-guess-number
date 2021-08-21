@@ -11,6 +11,7 @@ const resetButton = document.getElementById('resetbutton');
 let secretNumber = Math.ceil(Math.random() * 20);
 
 console.log(userGuess, guessButton, guessEl, numTries, resultsEl, secretNumber);
+
 let counter1 = 0;
 //let counter2 = 0;
 // initialize global state
